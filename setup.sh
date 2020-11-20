@@ -1,6 +1,6 @@
 #!/bin/bash
 #### REPOS START
-sudo add-apt-repository -y ppa:berglh/pulseaudio-a2dp # https://github.com/EHfive/pulseaudio-modules-bt/issues/132
+sudo add-apt-repository -y ppa:berglh/pulseaudio-a2dp
 # wine
 wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
 sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main'
@@ -18,11 +18,8 @@ sudo apt upgrade -y
 
 cd /tmp || exit 1
 # syncplay
-wget --content-disposition https://github.com/Syncplay/syncplay/releases/download/v1.6.5/syncplay_1.6.5.deb
-sudo apt install -y ./syncplay*.deb
-# vscode
-wget --content-disposition 'https://go.microsoft.com/fwlink/?LinkID=760868'
-sudo apt install -y ./code*.deb
+wget --content-disposition https://github.com/Syncplay/syncplay/releases/download/v1.6.6/syncplay_1.6.6.deb 'https://go.microsoft.com/fwlink/?LinkID=760868'
+sudo apt install -y ./code*.deb ./syncplay*.deb
 
 packages=(
   # optdeps
@@ -49,6 +46,7 @@ packages=(
   ppa-purge
   pulseaudio-modules-bt
   python3-{pip,venv}
+  python3.9 python3.9-venv
   qbittorrent
   ripgrep
   safeeyes
@@ -76,7 +74,7 @@ echo 'mks.gl.allowBlacklistedDrivers = "TRUE"' >> "$HOME/.vmware/preferences"
 
 # flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak install -y flathub com.github.vladimiry.ElectronMail com.github.ztefn.haguichi com.spotify.Client com.discordapp.Discord com.github.micahflee.torbrowser-launcher com.mojang.Minecraft org.freefilesync.FreeFileSync org.gtk.Gtk3theme.Breeze
+flatpak install -y flathub com.github.vladimiry.ElectronMail com.github.ztefn.haguichi com.spotify.Client com.discordapp.Discord com.github.micahflee.torbrowser-launcher com.mojang.Minecraft org.freefilesync.FreeFileSync com.neatdecisions.Detwinner org.gtk.Gtk3theme.Breeze
 
 # /etc/pam.d/sudo and /etc/pam.d/polkit-1
 sudo apt install -y fprintd libpam-fprintd
